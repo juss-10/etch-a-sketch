@@ -1,10 +1,34 @@
 const menuContainerElem = document.querySelector(".menu-container");
 const menuItemTabElems = document.querySelectorAll(".menu-item-tab");
 
-menuItemTabElems.forEach(menuItemElem => menuItemElem.addEventListener("click", toggleMenu))
+menuItemTabElems.forEach(menuItemElem => menuItemElem.addEventListener("click", menuHandler))
 
 function getDocumentWidth() {
     return document.documentElement.clientWidth;
+}
+
+function menuHandler() {
+    const menuToggleElem = menuItemTabElems[0];
+    const currentSubmenuElem = this.parentElement.querySelector(".submenu");
+    const submenuElems = document.querySelectorAll(".submenu");
+    const hasSubmenuElem = this.parentElement.contains(currentSubmenuElem);
+    const isOpened = menuContainerElem.classList.contains("open-menu");
+
+    if (isOpened && this === menuToggleElem) {
+        submenuElems.forEach(submenu =>
+            submenu.className = "submenu hidden"
+        )
+
+        toggleMenu()
+    } else if (isOpened && hasSubmenuElem) {
+        currentSubmenuElem.classList.toggle("hidden");
+    } else if (hasSubmenuElem) {
+        this.parentElement.querySelector(".submenu").classList.toggle("hidden");
+        toggleMenu()
+    } else if (this === menuToggleElem) {
+        toggleMenu()
+    }
+    
 }
 
 function toggleMenu() {

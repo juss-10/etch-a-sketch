@@ -77,6 +77,10 @@ h1 {
     padding: 1.5em 2em;
     background-color: hsl(0, 0%, 17%);
     border-top: 1px solid hsl(140, 5%, 10%);
+    /* display: none; */
+}
+
+.hidden {
     display: none;
 }
 
