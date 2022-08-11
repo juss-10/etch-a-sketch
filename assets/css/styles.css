@@ -31,7 +31,8 @@ h1 {
     border-bottom: 1px solid hsl(0, 0%, 20%);
 }
 
-.menu {
+.menu,
+.submenu {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -41,8 +42,6 @@ h1 {
     display: none;
     display: flex;
     flex-direction: column;
-
-
     width: 100%;
     height: 100%;
     background-color: hsl(0, 0%, 20%);
@@ -56,24 +55,33 @@ h1 {
     display: flex;
 }
 
-.menu li {
+.menu-list-item {
     height: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    border-bottom: 1px solid hsl(140, 5%, 10%);
 }
 
-.menu li:last-child {
+.menu-list-item:last-child {
     border-bottom: none;
 }
 
 .menu .menu-item-container {
+    display: flex;
     justify-content: space-between;
-    padding: 1em 1.5em;
+    padding: 1.5em 2em;
     flex: 1;
 }
 
-.menu-item-container {
-    display: flex;
+.submenu {
+    padding: 1.5em 2em;
+    background-color: hsl(0, 0%, 17%);
+    border-top: 1px solid hsl(140, 5%, 10%);
+    /* display: none; */
+}
+
+.submenu-list-item + .submenu-list-item {
+    margin-top: 1em;
 }
 
 .header,
@@ -118,12 +126,12 @@ section {
     margin-bottom: 2em;
 }
 
-.menu-list-item {
+.menu-item-container {
     cursor: pointer;
     user-select: none;
 }
 
-.menu-list-item:hover {
+.menu-item-container:hover {
     background-color: gray;
 }
 
@@ -159,13 +167,9 @@ section {
         height: initial;
     }
 
-    .menu-text,
-    .menu-icon {
-        padding: 0.5em;
-    }
-
     .header,
-    .menu li,
+    .menu-list-item:first-child,
+    .menu-list-item:last-child,
     .footer {
         min-height: 75px;
         flex-basis: 75px;
