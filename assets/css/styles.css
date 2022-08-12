@@ -116,7 +116,7 @@ section:first-child {
 }
 
 section:last-child {
-    margin-bottom: 4em;
+    margin-bottom: 6em;
 }
 
 section {
@@ -124,6 +124,32 @@ section {
     max-width: 500px;
     border: 1px solid hsl(0, 0%, 20%);
     margin-bottom: 2em;
+}
+
+.sketch-container {
+    position: relative;
+    padding: 0;
+}
+
+.sketch-container:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 100%;
+}
+
+.sketch-container > .sketch {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+  
+.sketch {
+    display: grid;
+    grid-template-columns: repeat(16, auto);
+    grid-template-rows: repeat(16, auto);
 }
 
 .menu-item-tab {
