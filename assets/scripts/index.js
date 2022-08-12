@@ -3,10 +3,6 @@ const menuItemTabElems = document.querySelectorAll(".menu-item-tab");
 
 menuItemTabElems.forEach(menuItemElem => menuItemElem.addEventListener("click", menuHandler))
 
-function getDocumentWidth() {
-    return document.documentElement.clientWidth;
-}
-
 function menuHandler() {
     const menuToggleElem = menuItemTabElems[0];
     const currentSubmenuElem = this.parentElement.querySelector(".submenu");
