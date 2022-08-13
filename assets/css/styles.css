@@ -158,8 +158,8 @@ section {
   
 .sketch {
     display: grid;
-    grid-template-columns: repeat(16, auto);
-    grid-template-rows: repeat(16, auto);
+    grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(10, 10%);
 }
 
 .menu-item-tab {
