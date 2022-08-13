@@ -92,6 +92,11 @@ label {
 #grid-range {
     display: block;
     width: 100%;
+    cursor: grab;
+}
+
+#grid-range:active {
+    cursor: grabbing;
 }
 
 .header,
