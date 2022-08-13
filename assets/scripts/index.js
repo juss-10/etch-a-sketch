@@ -3,14 +3,16 @@ import { menuHandler } from "./menu.js";
 const sketchElem = document.querySelector(".sketch");
 const gridRangeElem = document.querySelector("#grid-range");
 const menuItemTabElems = document.querySelectorAll(".menu-item-tab");
+let gridCellCount = 10;
 
 gridRangeElem.addEventListener("input", rangeHandler)
 gridRangeElem.addEventListener("change", gridHandler)
 menuItemTabElems.forEach(menuItemElem => menuItemElem.addEventListener("click", menuHandler))
+createGridElems(gridCellCount)
 
 function rangeHandler() {
-    updateRangeText(this.value)
-    updateGridSize(this.value)
+    gridCellCount = this.value;
+    updateRangeText(gridCellCount)
 }
 
 function updateRangeText(value) {
@@ -26,7 +28,8 @@ function updateGridSize(gridCellCount) {
 }
 
 function gridHandler() {
-    createGridElems()
+    updateGridSize(gridCellCount)
+    createGridElems(gridCellCount)
 }
 
 function createGridElems(gridCellCount = 10) {
