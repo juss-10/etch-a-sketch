@@ -162,6 +162,11 @@ section {
     grid-template-rows: repeat(10, 10%);
 }
 
+.cell {
+    background-color: gray;
+    margin: 1px;
+}
+
 .menu-item-tab {
     cursor: pointer;
     user-select: none;
