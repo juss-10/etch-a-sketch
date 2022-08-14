@@ -32,7 +32,7 @@ function gridHandler() {
     createGridElems(gridCellCount)
 }
 
-function createGridElems(gridCellCount = 10) {
+function createGridElems() {
     let cells = gridCellCount;
     cells **= 2;
     clearGrid()
@@ -46,10 +46,37 @@ function createGridElems(gridCellCount = 10) {
     }
 
     sketchElem.append(grid)
+
+    drawOnGrid(sketchElem)
 }
 
 function clearGrid() {
     while (sketchElem.firstChild) {
         sketchElem.firstChild.remove()
     }
+}
+
+function drawOnGrid(grid) {
+    const cells = grid.querySelectorAll(".cell");
+    
+    grid.addEventListener("mouseover", function (e) {
+        cells.forEach(cell => {
+            if (e.target === cell) {
+                const currentBackgroundColor = window.getComputedStyle(cell).getPropertyValue("background-color");
+                let colors = currentBackgroundColor.slice(currentBackgroundColor.indexOf("(") + 1, -1).split(",");
+                colors = colors.map(color => parseFloat(color.replace(" ", "")));
+        
+                // computed style includes 0 as alpha channel if background-color not set
+                // and removes value if set to 1
+                if (colors.length === 3) {
+                    return
+                }
+
+                let alpha = colors[3] + 0.1;
+                const newBackgroundColor = `rgba(${colors[0]}, ${colors[1]}, ${colors[2]}, ${alpha})`;
+                cell.style.backgroundColor = newBackgroundColor;
+
+            }
+        })
+    })
 }
