@@ -89,6 +89,11 @@ label {
     margin-bottom: 0.5em;
 }
 
+select,
+input {
+    width: 100%;
+}
+
 #grid-range {
     display: block;
     width: 100%;

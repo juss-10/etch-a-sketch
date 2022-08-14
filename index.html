@@ -23,8 +23,17 @@
                     <i class="fa-solid fa-palette menu-icon"></i>
                 </div>
                 <ul class="submenu hidden">
-                    <li class="submenu-list-item">submenu</li>
-                    <li class="submenu-list-item">submenu</li>
+                    <li class="submenu-list-item">
+                        <label>Color:</label>
+                        <select id="color-options">
+                            <option value="default">Default</option>
+                            <option value="rainbow">Rainbow</option>
+                            <option value="colorpicker">Colorpicker</option>
+                        </select>
+                    </li>
+                    <li class="submenu-list-item">
+                        <input id="colorpicker" type="color">
+                    </li>
                 </ul>
             </li>
             <li class="menu-list-item">
