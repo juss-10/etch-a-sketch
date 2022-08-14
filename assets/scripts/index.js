@@ -47,7 +47,7 @@ function createGridElems() {
 
     sketchElem.append(grid)
 
-    drawOnGrid(sketchElem)
+    enableDrawing(sketchElem)
 }
 
 function clearGrid() {
@@ -56,27 +56,31 @@ function clearGrid() {
     }
 }
 
-function drawOnGrid(grid) {
+function enableDrawing(grid) {
     const cells = grid.querySelectorAll(".cell");
     
     grid.addEventListener("mouseover", function (e) {
         cells.forEach(cell => {
             if (e.target === cell) {
-                const currentBackgroundColor = window.getComputedStyle(cell).getPropertyValue("background-color");
-                let colors = currentBackgroundColor.slice(currentBackgroundColor.indexOf("(") + 1, -1).split(",");
-                colors = colors.map(color => parseFloat(color.replace(" ", "")));
-        
-                // computed style includes 0 as alpha channel if background-color not set
-                // and removes value if set to 1
-                if (colors.length === 3) {
-                    return
-                }
-
-                let alpha = colors[3] + 0.1;
-                const newBackgroundColor = `rgba(${colors[0]}, ${colors[1]}, ${colors[2]}, ${alpha})`;
-                cell.style.backgroundColor = newBackgroundColor;
-
+                draw(cell)
             }
         })
     })
+}
+
+function draw(cell) {
+    const currentBackgroundColor = window.getComputedStyle(cell).getPropertyValue("background-color");
+    let colors = currentBackgroundColor.slice(currentBackgroundColor.indexOf("(") + 1, -1).split(",");
+    colors = colors.map(color => parseFloat(color.replace(" ", "")));
+
+    // computed style includes 0 as alpha channel if background-color not set
+    // and removes value if set to 1
+    if (colors.length === 3) {
+        return
+    }
+
+    let alpha = colors[3] + 0.1;
+    const newBackgroundColor = `rgba(${colors[0]}, ${colors[1]}, ${colors[2]}, ${alpha})`;
+    cell.style.backgroundColor = newBackgroundColor;
+
 }
