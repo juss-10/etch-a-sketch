@@ -5,12 +5,14 @@ const gridRangeElem = document.querySelector("#grid-range");
 const menuItemTabElems = document.querySelectorAll(".menu-item-tab");
 const colorOptionsElem = document.querySelector("#color-options");
 const colorpickerElem = document.querySelector("#colorpicker");
+const clearElem = document.querySelector("#clear-grid");
 let gridCellCount = 10;
 let colorMode = "default";
 let colorpickerColor;
 
 gridRangeElem.addEventListener("input", rangeHandler)
 gridRangeElem.addEventListener("change", gridHandler)
+clearElem.addEventListener("click", clearHandler)
 
 menuItemTabElems.forEach(menuItemElem => menuItemElem.addEventListener("click", menuHandler))
 createGridElems(gridCellCount)
@@ -129,4 +131,9 @@ colorpickerElem.addEventListener("change", getColorpickerColor)
 
 function getColorpickerColor() {
     colorpickerColor = this.value;
+}
+
+function clearHandler() {
+    clearGrid()
+    createGridElems(gridCellCount)
 }
