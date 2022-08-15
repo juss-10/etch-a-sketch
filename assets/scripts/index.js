@@ -6,15 +6,23 @@ const menuItemTabElems = document.querySelectorAll(".menu-item-tab");
 const colorOptionsElem = document.querySelector("#color-options");
 const colorpickerElem = document.querySelector("#colorpicker");
 const clearElem = document.querySelector("#clear-grid");
+const eraserElem = document.querySelector("#eraser");
+const eraserIcon = document.querySelector("#eraser-icon");
 let gridCellCount = 10;
 let colorMode = "default";
 let colorpickerColor;
+let eraserMode = false;
 
 gridRangeElem.addEventListener("input", rangeHandler)
 gridRangeElem.addEventListener("change", gridHandler)
 clearElem.addEventListener("click", clearHandler)
+eraserElem.addEventListener("click", eraserHandler)
 
-menuItemTabElems.forEach(menuItemElem => menuItemElem.addEventListener("click", menuHandler))
+menuItemTabElems.forEach(menuItemElem => {
+    menuItemElem.addEventListener("click", menuHandler)
+    menuItemElem.addEventListener("click", disableEraser)
+})
+
 createGridElems(gridCellCount)
 
 function rangeHandler() {
@@ -69,7 +77,11 @@ function enableDrawing(grid) {
     grid.addEventListener("mouseover", function (e) {
         cells.forEach(cell => {
             if (e.target === cell) {
-                draw(cell)
+                if (eraserMode) {
+                    erase(cell)
+                } else {
+                    draw(cell)
+                }
             }
         })
     })
@@ -136,4 +148,24 @@ function getColorpickerColor() {
 function clearHandler() {
     clearGrid()
     createGridElems(gridCellCount)
+}
+
+function eraserHandler() {
+    eraserMode = !eraserMode;
+    eraserIcon.classList.toggle("active-icon");
+
+    if (eraserMode === false){
+        disableEraser()
+    }
+}
+
+function disableEraser() {
+    if (this !== menuItemTabElems[3] && this !== menuItemTabElems[5]) {
+        eraserIcon.classList.remove("active-icon");
+        eraserMode = false;
+    } 
+}
+
+function erase(cell) {
+    cell.removeAttribute("style");
 }
