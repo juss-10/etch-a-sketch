@@ -198,6 +198,22 @@ section {
     border-top: 1px solid hsl(0, 0%, 20%);
 }
 
+.link-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.5em;
+}
+
+.github.link-icon::after {
+    content: "";
+    background: url("../images/github-logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+}
+
 @media (min-width: 500px) {
     body {
         flex-direction: row;
