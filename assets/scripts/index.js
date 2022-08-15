@@ -8,6 +8,7 @@ const colorpickerElem = document.querySelector("#colorpicker");
 const clearElem = document.querySelector("#clear-grid");
 const eraserElem = document.querySelector("#eraser");
 const eraserIcon = document.querySelector("#eraser-icon");
+const repoElem = document.querySelector("#repo");
 let gridCellCount = 10;
 let colorMode = "default";
 let colorpickerColor;
@@ -17,6 +18,8 @@ gridRangeElem.addEventListener("input", rangeHandler)
 gridRangeElem.addEventListener("change", gridHandler)
 clearElem.addEventListener("click", clearHandler)
 eraserElem.addEventListener("click", eraserHandler)
+repoElem.addEventListener("click", () =>
+    window.open("https://github.com/juss-10/etch-a-sketch", "_blank"))
 
 menuItemTabElems.forEach(menuItemElem => {
     menuItemElem.addEventListener("click", menuHandler)
